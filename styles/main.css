@@ -1,0 +1,633 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%; /* Full width of the viewport */
+  height: 100%; /* Full height of the viewport */
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  background-color: #222529;
+  color: #fff;
+}
+
+body,
+.main-container {
+  -webkit-touch-callout: none;
+  /* Disable long press */
+  -webkit-user-select: none;
+  /* Disable text selection */
+  user-select: none;
+}
+
+.main-container {
+  display: flex;
+  gap: 75px; /* Space between counters and right section */
+  width: 100%; /* Full width of the viewport */
+  height: 100%; /* Full height of the viewport */
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  gap: 60px
+}
+
+#showLandingPageBtn {
+  position: fixed;
+  background: transparent;       
+  border: 2px solid #636363; 
+  border-radius: 100%;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.8em;
+  width: 1em;                  /* SAME value for width and height */
+  height: 1.1em;
+
+}
+
+.counters-container {
+  display: flex;
+  flex-direction: row; /* Keep elements side by side */
+  align-items: stretch; /* Stretch children vertically */
+  height: 100%; /* Ensure it takes up the full height of its parent */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* COUNTERS */
+.counter-block {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;
+  justify-content: center; /* Center elements vertically */
+  gap: 6px;
+  position: relative; 
+}
+
+/* PLUS/MINUS Buttons */
+button.plus, button.minus {
+  display: flex;
+  width: 80px;
+  height: 60px;
+  border: none;
+  background-color: #222529;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+button.plus:active, button.minus:active {
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.11);
+}
+
+
+/* Move Speed counter +/- buttons slightly right */
+.counter-block:first-child button.plus,
+.counter-block:first-child button.minus {
+  left: -20px;
+}
+
+/* SPEED COUNTER */
+.speed-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 180px;
+  min-height: 180px;
+}
+
+.speed-counter img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.speed-counter .counter-value {
+  position: absolute;
+  top: 50%;
+  left: 36%;
+  transform: translate(-45%, -50%);
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 
+    -2px -2px 0 #000,  
+    2px -2px 0 #000,  
+    -2px 2px 0 #000,  
+    2px 2px 0 #000;
+}
+
+/* DAMAGE COUNTER */
+.damage-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  min-height: 180px;
+}
+
+.damage-star {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.damage-counter .counter-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 
+    -2px -2px 0 #000,  
+    2px -2px 0 #000,  
+    -2px 2px 0 #000,  
+    2px 2px 0 #000;
+}
+
+/* RIGHT SECTION (PANELS + RESET) */
+.right-section {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 80%; /* Fill the grid area */
+  height: 100%; /* Stretch to match the height of main-container */
+  
+}
+
+.reset-container {
+  display: flex;
+  position: absolute;
+  z-index: 20;
+  left: -42px;                /* "Pokes out" left, adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+  align-items: center;
+}
+
+.reset-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.reset-container button:active {
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.11);
+}
+
+.reset-container img {
+  width: 85px;
+  height: 85px;
+}
+
+#resetBtn img {
+  pointer-events: none;
+}
+
+
+
+.panel-group {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  position: relative;
+}
+
+
+/* HP PANELS */
+.hp-panels {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse; /* Panels stack vertically within the right section */
+  align-items: stretch;
+  justify-content: stretch;
+  align-content: stretch;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.panel-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+}
+
+.player-panel, .rival-panel {
+  width: 100%; /* Stretch to fill the panel group */
+  height: 100%; /* Stretch to fill the panel group */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  border: 3px solid #5d5d5d;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+
+.player-panel { background: #004080; }
+.rival-panel { background: #a00000; }
+ 
+
+.player-panel h2,
+.rival-panel h2 {
+  font-size: 20px;
+  padding-top: 15px;
+}
+
+.score {
+  position: relative;
+  font-size: 75px;    /* Or your preferred size */
+  font-weight: bold;
+  color: #fff;
+  display: inline-block;
+  text-shadow: 
+    -2px -2px 0 #000,  
+    2px -2px 0 #000,  
+    -2px 2px 0 #000,  
+    2px 2px 0 #000;
+}
+
+/* PANEL TOUCH ZONES */
+.panel-top, .panel-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.panel-top:active, .panel-bottom:active {
+  background: rgba(255,255,255,0.18); /* lighter highlight */
+}
+
+.panel-top {
+  transition: background 0.15s, transform 0.12s;
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.panel-bottom {
+  transition: background 0.15s, transform 0.12s;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+
+.panel-top { top: 0; }
+.panel-bottom { bottom: 0; }
+ 
+
+/* HP INCREMENT DISPLAYS */
+.hp-row {
+  position: relative;
+  display: flex;
+  align-items: center;      
+  justify-content: center;  
+  height: 100%;              
+}
+
+.increment-display {
+  position: absolute;
+  left: calc(50% + 5em); /* Tweak the em until it's the distance you like */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 1s;
+  pointer-events: none;
+  text-shadow: 0 0 8px #222;
+  font-size: 15px;           /* Adjust size as you like */
+  line-height: 1;
+  min-width: 1.5em;
+  text-align: left;
+}
+
+
+/* PANEL ACTIONS */
+.panel-actions {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -26px;                
+  z-index: 20;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2em;
+  width: 56px;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-actions.player-actions {
+  top: 80%;
+}
+.panel-actions.rival-actions {
+  top: 20%;
+}
+
+
+/* ICON BUTTONS */
+button.icon-button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0.5em;
+  border-radius: 12px;
+}
+
+button.icon-button:active {
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.11);
+}
+
+button.icon-button img {
+  width: 7.9vw; /* Adjust icon size */
+  display: block;
+  pointer-events: none;
+  transition: transform 0.13s, filter 0.18s;
+}
+
+/* LANDING PAGE */
+.landing-page {
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(20,22,30,0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vw;
+}
+
+
+.landing-content {
+  background: #222529;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 28px #000a;
+  padding: 5vw 4vw 4vw 4vw;
+  text-align: left;
+  max-width: 410px;
+  width: 96vw;
+  max-height: 87vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-link {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+.support-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 0.5em;
+}
+
+/* Welcome header */
+.welcome-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  color: #ffcc00; /* Highlight color */
+  text-align: center;
+}
+
+/* Description text */
+.landing-description {
+  font-size: 0.8em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+  color: #ccc; /* Lighter text */
+  text-align: center;
+}
+
+/* Close button (X) */
+.close-btn {
+  position: absolute;
+  top: 0.7em;
+  right: 0.7em;
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+.close-btn:hover,
+.close-btn:focus {
+  color: #0078ff;
+}
+
+/* Instruction list */
+.landing-list {
+  margin: 2em 0 2.5em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.landing-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  font-size: 1.07em;
+  line-height: 1.4;
+}
+
+/* Instruction icons */
+.landing-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 4px #0004);
+}
+
+/* Buy Me a Coffee button */
+.coffee-btn {
+  display: inline-flex;
+  border: none;
+  padding: 0.5em 1.2em;
+  margin-top: 1em;
+  cursor: pointer;
+  gap: 0.7em;
+  background: none; 
+}
+.coffee-btn img {
+  width: 1.8em;  
+  height: 1.8em;
+}
+.coffee-btn:hover, .coffee-btn:focus {
+  background: #000000;
+  border-radius: 20%;
+}
+
+.support-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 0.5em;
+}
+
+/* Disable text selection and long press */
+button img,
+.speed-counter img,
+.damage-counter img {
+  pointer-events: none;
+}
+
+
+/* RESPONSIVENESS */
+
+@media (min-width: 1024px) { /* Apply styles for desktop screens */
+  .main-container {
+    width: 700px; /* Fixed width for desktop */
+    height: 320px; /* Fixed height for desktop */
+    margin: auto; /* Center the container */
+  }
+}
+
+@media (max-width: 560px) {
+  .main-container {
+    flex-direction: column; /* Stack elements vertically */
+    gap: 20px; /* Reduce spacing */
+    width: auto; /* Allow shrinking */
+    height: auto; /* Allow shrinking */
+  }
+  
+
+  body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 100vw;
+  padding: 0;
+}
+
+.right-section {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hp-panels {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    padding-bottom: 9vh;
+  }
+
+  .counter-block:first-child button.plus, 
+  .counter-block:first-child button.minus {
+    left: 0px;
+  }
+.reset-container {
+    display: flex;
+    position: absolute;
+    z-index: 20;
+    top: 5%;
+    align-items: center;
+    transform: translateY(-50%);
+    left: auto;
+    }
+
+.panel-actions {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -26px;                
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  width: 56px;
+  align-items: center;
+  gap: 10px;
+}
+.panel-actions.player-actions {
+  top: 91%;
+  right: 81%;
+  left: auto;
+}
+.panel-actions.rival-actions {
+  top: 91%;
+  left: 56%;
+  right: auto;
+}
+
+button.icon-button img {
+    width: 15vw;
+    display: block;
+    pointer-events: none;
+    transition: transform 0.13s, filter 0.18s;
+}
+
+.increment-display {
+  position: absolute;
+  left: calc(50% + 3.75em); /* Tweak the em until it's the distance you like */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 1s;
+  pointer-events: none;
+  text-shadow: 0 0 8px #222;
+  font-size: 15px;           /* Adjust size as you like */
+  line-height: 1;
+  min-width: 1.5em;
+  text-align: left;
+}
+}

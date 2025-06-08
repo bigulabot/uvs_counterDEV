@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>UVS Counter</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/appicon_ios.png" />
+
+</head>
+<body>
+
+  <div class="main-container">
+
+    <button id="showLandingPageBtn" class="icon-button" style="position: absolute; top: 0.3em; left: 0em; z-index: 20;">
+  ?
+</button>
+
+    <!-- LEFT: COUNTERS -->
+    <div class="counters-container">
+
+   <!-- SPEED COUNTER -->
+<div class="counter-block">
+  <button class="plus" type="button" aria-label="Increase speed"><img src="icons/button_plus.svg" alt="" aria-hidden="true"/></button>
+  <div class="speed-counter" tabindex="0" role="button" aria-label="Cycle speed">
+    <img id="speedIcon" src="icons/Off.svg" alt="Speed Counter" />
+    <div class="counter-value" id="speedCount">0</div>
+  </div>
+  <button class="minus" type="button" aria-label="Decrease speed"><img src="icons/button_minus.svg" alt="" aria-hidden="true"/></button>
+</div>
+
+<!-- DAMAGE COUNTER -->
+<div class="counter-block">
+  <button class="plus" type="button" aria-label="Increase damage"><img src="icons/button_plus.svg" alt="" aria-hidden="true"/></button>
+  <div class="damage-counter">
+    <img src="icons/yellow-star.svg" class="damage-star" alt="" />
+    <div class="counter-value" id="damageCount">0</div>
+  </div>
+  <button class="minus" type="button" aria-label="Decrease damage"><img src="icons/button_minus.svg" alt="" aria-hidden="true"/></button>
+</div>
+</div>
+    <!-- RIGHT: RESET + PANELS -->
+    <div class="right-section">
+    
+      <div class="reset-container">
+        <button id="resetBtn">
+          <img src="icons/block-reset.svg" alt="Reset" />
+        </button>
+      </div>  
+
+ <div class="panel-actions player-actions">
+      <button id="halfDamageBtn" class="icon-button">
+        <img src="icons/player-half.svg" alt="Player Half Damage" />
+      </button>    
+      <button id="fullDamageBtn" class="icon-button">
+        <img src="icons/player-full.svg" alt="Player Full Damage" />
+      </button>
+     
+    </div>
+
+   <div class="panel-actions rival-actions">
+      <button id="fullDamageRivalBtn" class="icon-button">
+        <img src="icons/rival-full.svg" alt="Rival Full Damage" />
+      </button>
+      <button id="halfDamageRivalBtn" class="icon-button">
+        <img src="icons/rival-half.svg" alt="Rival Half Damage" />
+      </button>
+    </div>
+
+
+
+      <!-- PANELS -->
+   <div class="hp-panels">
+       
+    
+    <div class="panel-group">
+      <div class="player-panel">
+        <h2>Player</h2>
+        <div class="panel-top"></div>
+        <div class="hp-row">
+          <span id="playerScore" class="score">25</span>
+          <div class="increment-display"></div>
+        </div>
+        <div class="panel-bottom"></div>
+      </div>
+    </div>
+   
+  
+
+   
+    <div class="panel-group">
+      <div class="rival-panel">
+        <h2>Rival</h2>
+        <div class="panel-top"></div>
+        <div class="hp-row">
+          <span id="rivalScore" class="score">25</span>
+          <div class="increment-display"></div>
+        </div>
+        <div class="panel-bottom"></div>
+      </div>
+    </div>
+ 
+  
+   </div>
+</div>
+  </div>
+
+  <div id="landingPage" class="landing-page">
+  <div class="landing-content">
+    <button id="closeLandingPage" class="close-btn" aria-label="Close">&times;</button>
+    
+    <div class="welcome-message">
+    Welcome to <b>UVS Counter</b>!
+  </div>
+    <div class="landing-description">
+      This app is designed to help you keep track of speed, zone, damage, and life in your UniVersus games. 
+    </div>
+
+    <div class="landing-list">
+      <div class="landing-row">
+        <img src="icons/home-screen.svg" class="landing-icon" alt="Add to Home Screen" />
+        <span>Click on the <img src="icons/share.svg" alt="Share" style="vertical-align:center; width:1em; height:1em; margin:0;"> button and <b>Add to Home Screen</b> for the best experience.</span>
+      </div>
+      <div class="landing-row">
+        <img src="icons/rotate-device.svg" class="landing-icon" alt="Phone Portrait/Landscape" />
+        <span>This app works both in portrait and landscape mode.</span>
+      </div>
+      <div class="landing-row">
+        <img src="icons/intro-reset.svg" class="landing-icon" alt="Reset" />
+        <span>
+          <b>tap</b> to reset speed, zone &amp; damage / full block.<br>
+          <br>
+          <b>hold</b> to reset speed, zone, damage &amp; life.
+        </span>
+      </div>
+      <div class="landing-row">
+        <img src="icons/intro_dmg1.svg" class="landing-icon" alt="Full Damage" />
+        <span><b>tap</b> to deal full damage.</span>
+      </div>
+      <div class="landing-row">
+        <img src="icons/intro_dmg2.svg" class="landing-icon" alt="Half Damage" />
+        <span><b>tap</b> to deal half damage / half block.</span>
+      </div>
+    </div>
+    <div class="feedback-link">
+      <a href="https://forms.gle/AMwFuPB12adRHYkj7" style="color: #fff; text-decoration: underline; font-size: 1.1em;">
+        Click here to give feedback
+      </a>
+    </div>
+    <div class="support-section">
+        <span style="color: #fff; margin-right: 8px; font-size: 1em;">Want to support the app?</span>
+        <a href="https://coff.ee/bigula" target="_blank" title="Buy me a coffee">
+          <img src="icons/bmc-button.svg" alt="Buy me a coffee" style="height: 32px; vertical-align: middle;">
+        </a>
+      </div>
+  </div>
+</div>
+
+  <script src="scripts/app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service worker registered.', reg))
+          .catch(err => console.log('Service worker registration failed.', err));
+      });
+    }
+  </script>
+
+</body>
+</html>
