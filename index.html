@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>UVS CounterDEV</title>
+  <title>UVS Counter</title>
   <link rel="stylesheet" href="styles/main.css" />
   <link rel="manifest" href="manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
@@ -15,8 +15,11 @@
 
   <div class="main-container">
 
-    <button id="showLandingPageBtn" class="icon-button" style="position: absolute; top: 0.3em; left: 0em; z-index: 20;">
+    <!-- <button id="showLandingPageBtn" class="icon-button" style="position: absolute; top: 0.3em; left: 0em; z-index: 20;">
   ?
+</button> -->
+<button id="settingsBtn" class="icon-button" style="position: absolute; top: 0.3em; left: 0.1em; z-index: 20;">
+  <img src="icons/settings.svg" alt="Settings" style="width:1.3em;height:1.3em;filter: grayscale(1) contrast(2) brightness(1.2);" />
 </button>
 
     <!-- LEFT: COUNTERS -->
@@ -143,6 +146,10 @@
       <div class="landing-row">
         <img src="icons/intro_dmg2.svg" class="landing-icon" alt="Half Damage" />
         <span><b>tap</b> to deal half damage / half block.</span>
+      </div>
+      <div class="landing-row">
+        <img src="icons/intro_settings.svg" class="landing-icon" alt="Settings" />
+        <span>adjust starting life, speed, zone and damage.</span>
       </div>
     </div>
     <div class="feedback-link">
